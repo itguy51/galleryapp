@@ -1,3 +1,133 @@
-// Place all the styles related to the pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "zen";
+@import "compass/css3";
+
+$zen-column-count: 15;
+$zen-gutter-width: 10px;
+
+$rowheight: 70px;
+$borderheight: 1px;
+$waster: 20px;
+$padding: 5px;
+$fontsize: 20px;
+$bordercolor: #333;
+
+@mixin titlebox {
+  padding-top: $padding;
+  padding-left: $padding;
+  min-height:$rowheight;
+  @include border-top-left-radius();
+  @include border-bottom-left-radius();
+  @include background(linear-gradient(#EEE, #CCC));
+  font-size: $fontsize;
+}
+@mixin options{
+  min-height:$rowheight;
+  @include border-top-right-radius();
+  @include border-bottom-right-radius();
+  @include zen-grid-item(1, 7);
+  @include background(linear-gradient(#55F, #33F));
+}
+@mixin automarg {
+  margin-left: auto;
+  margin-right: auto;
+}
+@mixin border{
+  border-style:solid;
+  border-width:$borderheight;
+  border-color: $bordercolor;
+}
+#descbox{
+  @include zen-grid-item(12, 1);
+}
+#bottom{
+  @include zen-clear(); 
+  @include zen-grid-item(14, 2);
+  
+  @include border-bottom-right-radius();
+  background-color: #333;
+  height:35px;
+  text-align: center;
+  color: #FFF;
+  padding-top: 8px;
+}
+#back{
+  @include zen-grid-item(1, 1);
+  @include border-bottom-left-radius();
+  background-color: #343;
+  height:35px;
+  text-align: center;
+  color: #FFF;
+  padding-top: 8px;
+}
+#form1{
+  @include zen-clear(); 
+  @include zen-grid-item(7.5, 1);
+  text-align: center;
+  padding-top: 3px;
+}
+#form2{
+  @include zen-grid-item(7.5, 8.5);
+  text-align: center;
+  padding-top: 3px;
+}
+#picbox{
+  @include zen-grid-item(3, 13);
+  background-color:#888;
+  height:500px;
+}
+.spacewaste{
+  min-height: $waster;
+  @include zen-clear(); 
+  @include zen-grid-item(15, 1);
+}
+
+.container2{
+  @include zen-grid-container;
+  margin-top: 15px;
+  width:$zen-grid-width;
+  @include automarg;
+}
+
+#descbox {
+  min-height: 10em;
+  overflow-y: scroll;
+  height:390px;
+  font-size: 16px;
+  line-height: 2em;
+  padding-left: 96px;
+  border: none;
+  background: transparent;
+  background-image: -webkit-linear-gradient(0deg, transparent 5em, rgba(255,0,0,.2) 0, transparent 5.1em), -webkit-linear-gradient(rgba(0,0,255,.3) 1px, transparent 0);
+  background-image: -moz-linear-gradient(0deg, transparent 5em, rgba(255,0,0,.2) 0, transparent 5.1em), -moz-linear-gradient(rgba(0,0,255,.3) 1px, transparent 0);
+  background-image: -o-linear-gradient(0deg, transparent 5em, rgba(255,0,0,.2) 0, transparent 5.1em), -o-linear-gradient(rgba(0,0,255,.3) 1px, transparent 0);
+  background-image: -ms-linear-gradient(0deg, transparent 5em, rgba(255,0,0,.2) 0, transparent 5.1em), -ms-linear-gradient(rgba(0,0,255,.3) 1px, transparent 0);
+  background-image: 
+  linear-gradient(0deg, transparent 5em, rgba(255,0,0,.2) 0, transparent 5.1em), 
+  linear-gradient(rgba(0,0,255,.3) 1px, transparent 0);
+  -webkit-background-size: 100% 2em;
+  -moz-background-size: 100% 2em;
+  background-size: 100% 2em;
+}
+#headbox{
+  color: #CCC;
+  text-align: center;
+  padding-top: 10px;
+  font-size:24px;
+  text-shadow: 2px 2px 2px #333;
+  //background-image: url(/leather.jpg);
+  background-color: #333;
+  width:100%;
+  height:1.3em;
+  background-size:20%;
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  word-wrap:break-word;
+  margin-top:-15px;
+}
+#back a{
+  color:#FFF;
+}

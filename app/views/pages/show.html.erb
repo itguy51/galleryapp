@@ -1,6 +1,6 @@
-<p id="notice"><%= notice %></p>
 
-<p>
+
+<!--<p>
   <b>Title:</b>
   <%= @page.title %>
 </p>
@@ -9,12 +9,48 @@
   <b>Name:</b>
   <%= @page.name %>
 </p>
-
+<p id="notice"><%= notice %></p>
 <p>
-  <b>Summary:</b>
+  <b>Summary:</b>-->
+  <div class="container2">
+  <div id="headbox"><%= @page.title %> by <%= @page.name %></div>
+  <div id="descbox" class="res">
   <%= @page.summary %>
-</p>
+  </div>
+<div id="picbox" class="res">
+	<ul class="gallery clearfix">
+<%= render :partial => @page.images %><% if user_signed_in? %><% if @page.user_id == current_user.id %><% end end %>
+</ul>
+</div>
 
+<div id="bottom"><% if user_signed_in? %><% if @page.user_id == current_user.id %><i class="icon-edit"></i><% end end %></div>
+<div id="back"><%= link_to 'Go Back', pages_path, 'data-no-turbolink' => 'true' %></div>
 
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+<style type="text/css">
+body{
+  margin: 0px;
+  padding: 0px;
+}
+
+</style>
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $("#formbox").hide();
+  $("#bottom").click(function(){
+    <% if user_signed_in? %><% if @page.user_id == current_user.id %>
+    Turbolinks.visit("/pages/<%= @page.id %>/edit") ;
+    <% end end %>
+  });
+  $(window).resize(function() {
+      $(".res").css({height: ($(window).height() - $("#headbox").height()-18 - $("#bottom").height()) + "px"});
+      $("#form").css({height: ($("#form2").height() +3) + "px"});
+  });
+      $("#form").css({height: ($("#form2").height() +3) + "px"});
+      $(".res").css({height: ($(window).height() - $("#headbox").height()-18  - $("#bottom").height()) + "px"});
+      $("area[rel^='prettyPhoto']").prettyPhoto();
+	  $(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal',theme:'light_square',slideshow:3000, autoplay_slideshow: true});
+	  $(".gallery:gt(0) a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'fast',slideshow:10000, hideflash: true});
+});
+
+</script>

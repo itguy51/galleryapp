@@ -6,15 +6,11 @@
 </p>
 
 <p>
-  <b>Desc:</b>
+  <b>Description:</b>
   <%= @image.desc %>
 </p>
 
 <p>
-  <b>File:</b>
-  <%= @image.file %>
+  <%= image_tag "http://localhost/#{@image.file}"%>
 </p>
 
-
-<%= link_to 'Edit', edit_image_path(@image) %> |
-<%= link_to 'Back', images_path %>

@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
+    @uri = get_html_content("http://joshpruim.com/imagedata/path.txt")
     @page = Page.find(params[:id])
 
     respond_to do |format|
@@ -41,14 +42,16 @@ class PagesController < ApplicationController
   # POST /pages.json
   def create
     @page = Page.new(params[:page])
-
-    respond_to do |format|
-      if @page.save
-        format.html { redirect_to @page, :notice => 'Page was successfully created.' }
-        format.json { render :json => @page, :status => :created, :location => @page }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @page.errors, :status => :unprocessable_entity }
+    if user_signed_in?
+      @page.user_id = current_user.id
+      respond_to do |format|
+        if @page.save
+          format.html { redirect_to @page, :notice => 'Page was successfully created.' }
+          format.json { render :json => @page, :status => :created, :location => @page }
+        else
+          format.html { render :action => "new" }
+          format.json { render :json => @page.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
@@ -79,5 +82,17 @@ class PagesController < ApplicationController
       format.html { redirect_to pages_url }
       format.json { head :no_content }
     end
+  end
+  def get_html_content(requested_url)
+    url = URI.parse(requested_url)
+    full_path = (url.query.blank?) ? url.path : "#{url.path}?#{url.query}"
+    the_request = Net::HTTP::Get.new(full_path)
+
+    the_response = Net::HTTP.start(url.host, url.port) { |http|
+      http.request(the_request)
+    }
+
+    raise "Response was not 200, response was #{the_response.code}" if the_response.code != "200"
+    return the_response.body       
   end
 end

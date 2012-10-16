@@ -1,27 +1,38 @@
-<h1>Listing pages</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Name</th>
-    <th>Summary</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div class="container">
+    <div class="titlepobj">Listing Pages</div>
 <% @pages.each do |page| %>
-  <tr>
-    <td><%= page.title %></td>
-    <td><%= page.name %></td>
-    <td><%= page.summary %></td>
-    <td><%= link_to 'Show', page %></td>
-    <td><%= link_to 'Edit', edit_page_path(page) %></td>
-    <td><%= link_to 'Destroy', page, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
+<div class="spacewaste"></div>
+        <div class="title" data-post="<%= page.id %>"><%= link_to "#{page.title}", page %> by <%= page.name %></div>
+        <div class="options"
+        <% if user_signed_in? %>
+        <% if page.user_id == current_user.id %>
+        data-ismine="true"
+        <% else %>
+        data-ismine="false"
+        <% end end %>
+        data-post="<%= page.id %>"><i class="bigg icon-cog"></i></div>
+
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Page', new_page_path %>
+<div class="spacewaste"></div>
+<% if user_signed_in? %>
+        <div id="logout" class="logout">Logout</div>
+        <div id="new" class="new">New</div>
+<% else %>
+        <div id="login" class="login clicky">Login</div>
+<% end %>
+</div>
+    <div id="menu">
+      <ul id="mint">
+        <li id="view">View</li>
+        <li id="edit">Edit</li>
+        <li id="dele">Delete</li>
+      </ul>
+    </div>
+    <div id="osx-modal-content">
+      <div id="osx-modal-title">Edit Page</div>
+      <div class="close"><a href="#" class="simplemodal-close">x</a></div>
+      <div id="osx-modal-data">
+        
+      </div>
+    </div>
+    <div id="nullbox"></div>

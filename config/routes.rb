@@ -1,9 +1,11 @@
 Galleryapp::Application.routes.draw do
   devise_for :users
 
-  resources :images
+  resources :pages do
+    resources :images
+  end
+    match '/pages/:page_id/images/:id' => 'pages#index'
 
-  resources :pages
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
