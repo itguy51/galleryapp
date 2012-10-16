@@ -1,3 +1,4 @@
 class Page < ActiveRecord::Base
-  attr_accessible :name, :summary, :title
+  has_many :images, :dependent => :destroy
+  #attr_accessible :name, :summary, :title
 end

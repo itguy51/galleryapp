@@ -8,17 +8,17 @@ gem 'rails', '3.2.8'
 gem 'sqlite3'
 
 gem 'json'
-
+gem 'sass'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
+  gem 'compass-rails'
+  gem 'compass-colors'
+  gem 'sassy-buttons'
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier', '>= 1.0.3'
+  gem 'zen-grids'
 end
 
 gem 'jquery-rails'
@@ -38,3 +38,5 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 gem 'devise'
+gem 'uuid'
+gem 'turbolinks'
