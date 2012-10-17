@@ -1,0 +1,52 @@
+<% if user_signed_in? %>
+  <% if @page.user_id == current_user.id %>
+  <div id="form1">
+   
+  </div>
+  <div id="form2">
+    <%= form_for(@page) do |f| %>
+    <h2>Edit Page</h2>
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+      <ul>
+      <% @page.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %> 
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label "Your Name" %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :summary %><br />
+    <%= f.text_area :summary %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+  </div>
+  <% end %>
+  <% end %>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $.ajax({
+      url: "/pages/<%= @page.id %>/images/new",
+      success: function(result) {
+        $("#form1").html(result);      
+      }
+    });
+  });
+</script>
+<a href="javascript:Turbolinks.visit('/pages/<%= @page.id %>');">Go Back</a>

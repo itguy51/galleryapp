@@ -1,0 +1,11 @@
+<tr>
+	<td><%= image.title %></td>
+	<td><%= image.desc %></td>
+	<!--<td><%= image.file %></td>-->
+	<td><%= image_tag "/uploads/#{image.file}"%></td>
+	<% if user_signed_in? %>
+	<% if @page.user_id == current_user.id %>
+	<td><%= link_to 'Delete', page_image_path(@page, image), :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
+	<% end %>
+</tr>

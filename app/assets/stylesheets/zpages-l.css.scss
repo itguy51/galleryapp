@@ -1,0 +1,208 @@
+@import "zen";
+@import "compass/css3";
+
+@font-face {
+  font-family: 'Marcellus';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Marcellus'), local('Marcellus-Regular'), url(http://themes.googleusercontent.com/static/fonts/marcellus/v1/FJNab1jzp1t7ctjNl8ugHD8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+
+$zen-column-count: 15;
+$zen-gutter-width: 10px;
+$zen-grid-width: 960px;
+$rowheight: 70px;
+$borderheight: 1px;
+$waster: 20px;
+$padding: 5px;
+$fontsize: 20px;
+$bordercolor: #333;
+
+@mixin marcellus {
+  font-family: 'Marcellus', serif;
+}
+@mixin titlebox {
+  padding-top: $padding;
+  padding-left: $padding;
+  min-height:$rowheight;
+  @include border-top-left-radius();
+  @include border-bottom-left-radius();
+  @include background(linear-gradient(#EEE, #CCC));
+  font-size: $fontsize;
+}
+@mixin options{
+  min-height:$rowheight;
+  @include border-top-right-radius();
+  @include border-bottom-right-radius();
+  @include zen-grid-item(1, 7);
+  @include background(linear-gradient(#55F, #33F));
+}
+@mixin automarg {
+  margin-left: auto;
+  margin-right: auto;
+}
+@mixin border{
+  border-style:solid;
+  border-width:$borderheight;
+  border-color: $bordercolor;
+}
+
+body{
+  @include marcellus;
+  background-image: url('http://i.imgur.com/eoIxB.png');
+}
+
+.spacewaste{
+  min-height: $waster;
+  @include zen-clear(); 
+  @include zen-grid-item(15, 1);
+}
+
+.container{
+  @include zen-grid-container;
+  margin-top: 15px;
+}
+
+.container{
+  width:$zen-grid-width;
+  @include automarg;
+}
+
+.title{
+  @include border;
+  @include titlebox;
+  @include zen-grid-item(14, 1);
+  border-right-style: none;
+  &:not(:first-child){
+    @include zen-clear(); 
+  }
+}
+
+.options{
+  @include border;
+  @include options;
+  @include zen-grid-item(1, 15);
+  border-left-style: none;
+  padding-top: 7px;
+  line-height: (56px - $borderheight*2);
+
+}
+
+.titlepobj{
+  font-size: $fontsize*1.5;
+}
+
+.login{
+  @include zen-clear(); 
+  @include zen-grid-item(15, 1);
+  @include border-radius();
+  @include background(linear-gradient(#666, #444));
+  line-height: $rowheight - ($waster/2);
+  text-align: center;
+  min-height:$rowheight - ($waster/2);
+  &:hover{
+    @include background(linear-gradient(#444, #666));
+  }
+  &:active{
+    @include box-shadow(rgba(0, 0, 0, 0.6) 0 0 10px inset );
+  }
+}
+
+.logout{
+  @include zen-clear(); 
+  @include zen-grid-item(7.5, 1);
+  @include border-top-left-radius();
+  @include border-bottom-left-radius();
+  @include background(linear-gradient(#866, #644));
+  line-height: $rowheight - ($waster/2);
+  text-align: center;
+  min-height:$rowheight - ($waster/2);
+  &:hover{
+    @include background(linear-gradient(#644, #866));
+  }
+  &:active{
+    @include box-shadow(rgba(0, 0, 0, 0.6) 0 0 10px inset );
+  }
+}
+
+.new{
+  @include zen-grid-item(7.5, 8.5);
+  @include border-top-right-radius();
+  @include border-bottom-right-radius();
+  @include background(linear-gradient(#686, #464));
+  line-height: $rowheight - ($waster/2);
+  text-align: center;
+  min-height:$rowheight - ($waster/2);
+  &:hover{
+    @include background(linear-gradient(#464, #686));
+  }
+  &:active{
+    @include box-shadow(rgba(0, 0, 0, 0.6) 0 0 10px inset );
+  }
+}
+
+.bigg{
+  margin-left: 14px;
+  font-size: 30px;
+}
+#picbox ul{
+  list-style-type: none; 
+  padding-left: 15px;
+}
+#picbox img{
+  margin-left: auto;
+  margin-right: auto;
+  margin: 5px;
+  border: 5px solid #FFF;
+  max-width: 200px;
+  max-height: 200px;
+}
+#mint{
+  list-style-type: none;
+  line-height: 40px;
+  width: 82px;
+  padding-left: 0px;
+  background-color: #fff;
+  
+}
+#menu{
+  display: none;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+
+}
+#mint li{
+  width: 80px;
+  height: 40px;
+  text-align: center;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  &:first-child{
+    border-top: 1px solid #000;
+  }
+  &:hover{
+    background-color: #CCF;
+  }
+}
+#descbox {
+  min-height: 10em;
+  overflow-y: scroll;
+  height:390px;
+  font-size: 16px;
+  line-height: 2em;
+  padding-left: 96px;
+  border: none;
+  background: transparent;
+  background-image: -webkit-linear-gradient(0deg, transparent 5em, rgba(255,0,0,.2) 0, transparent 5.1em), -webkit-linear-gradient(rgba(0,0,255,.3) 1px, transparent 0);
+  background-image: -moz-linear-gradient(0deg, transparent 5em, rgba(255,0,0,.2) 0, transparent 5.1em), -moz-linear-gradient(rgba(0,0,255,.3) 1px, transparent 0);
+  background-image: -o-linear-gradient(0deg, transparent 5em, rgba(255,0,0,.2) 0, transparent 5.1em), -o-linear-gradient(rgba(0,0,255,.3) 1px, transparent 0);
+  background-image: -ms-linear-gradient(0deg, transparent 5em, rgba(255,0,0,.2) 0, transparent 5.1em), -ms-linear-gradient(rgba(0,0,255,.3) 1px, transparent 0);
+  background-image: 
+  linear-gradient(0deg, transparent 5em, rgba(255,0,0,.2) 0, transparent 5.1em), 
+  linear-gradient(rgba(0,0,255,.3) 1px, transparent 0);
+  -webkit-background-size: 100% 2em;
+  -moz-background-size: 100% 2em;
+  background-size: 100% 2em;
+}

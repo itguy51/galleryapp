@@ -1,0 +1,51 @@
+
+
+<!--<p>
+  <b>Title:</b>
+  <%= @page.title %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @page.name %>
+</p>
+<p id="notice"><%= notice %></p>
+<p>
+  <b>Summary:</b>-->
+  <div class="container2">
+  <div id="headbox"><%= @page.title %> by <%= @page.name %></div>
+  <div id="descbox" class="res">
+  <%= @page.summary %>
+  </div>
+<div id="picbox" class="res">
+<%= render :partial => @page.images %><% if user_signed_in? %><% if @page.user_id == current_user.id %><% end end %>
+</div>
+
+<div id="bottom"><% if user_signed_in? %><% if @page.user_id == current_user.id %><i class="icon-edit"></i><% end end %></div>
+<div id="back"><%= link_to 'Go Back', pages_path, 'data-no-turbolink' => 'true' %></div>
+
+<style type="text/css">
+body{
+  margin: 0px;
+  padding: 0px;
+}
+
+</style>
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $("#formbox").hide();
+  $("#bottom").click(function(){
+    <% if user_signed_in? %><% if @page.user_id == current_user.id %>
+    Turbolinks.visit("/pages/<%= @page.id %>/edit") ;
+    <% end end %>
+  });
+  $(window).resize(function() {
+      $(".res").css({height: ($(window).height() - $("#headbox").height()-18 - $("#bottom").height()) + "px"});
+      $("#form").css({height: ($("#form2").height() +3) + "px"});
+  });
+      $("#form").css({height: ($("#form2").height() +3) + "px"});
+      $(".res").css({height: ($(window).height() - $("#headbox").height()-18  - $("#bottom").height()) + "px"});
+});
+
+</script>
